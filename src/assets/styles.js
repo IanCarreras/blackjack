@@ -16,12 +16,12 @@ export const CardTable = styled.div`
     border: 3px solid black;
     border-radius: 3rem;
     padding: 2rem;
-    width: 40%;
+    width: 60%;
     background: darkgreen;
 `
 export const Hand = styled.div`
     border: 2px solid white;
-    width: 70%;
+    width: 100%;
     margin: 1.5rem auto;
     text-align: center;
 `
@@ -60,6 +60,9 @@ export const DisplayDiv = styled.div`
     background: black;
     height: 15rem;
     width: 15rem;
+`
+export const ScoreContainer = styled.div`
+    height: 15rem;
 `
 export const Score = styled.h2`
     color: white;
