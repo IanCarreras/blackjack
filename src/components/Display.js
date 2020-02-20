@@ -1,19 +1,39 @@
 import React from 'react'
-import { DisplayDiv, Score, Button } from '../assets/styles'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { actionCreators } from '../actions/actions'
 
-const Display = ({player, computer, winner, actions, deckId}) => {
+import { DisplayDiv, 
+    ScoreContainer,
+    Score, 
+    Button 
+} from '../assets/styles'
+
+const Display = ({player, computer, winner, actions, deck, deckId}) => {
     return (
         <DisplayDiv>
-            { winner && 
-                <>
-                    <Score>{winner}</Score>
-                    <Button onClick={() => actions.dealHand(deckId)}>Next Hand</Button>
-                </>
-            }
-            <Score>Computer: {computer.score}</Score>
-            <Score>Player: {player.score}</Score>
+            <ScoreContainer>
+                {winner && <Score>{winner}</Score>}
+                <Score>Computer: {computer.score}</Score>
+                <Score>Player: {player.score}</Score>
+            </ScoreContainer>
+            <div>
+                <Button disabled={player.stand || winner} onClick={() => actions.hit(deck.deck_id, 'player')}>Hit</Button>
+                <Button disabled={player.stand || winner} onClick={() => actions.stand()}>Stand</Button>
+                {winner && <Button onClick={() => actions.dealHand(deckId)}>Next Hand</Button>}
+            </div>
         </DisplayDiv>
     )
 }
 
-export default Display
+const mapStateToProps = ({ deck, player, winner }) => {
+    return { deck, player, winner }
+}
+  
+const mapDispatchToProps = (dispatch) => {
+    return {
+      actions: bindActionCreators(actionCreators, dispatch)
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Display);

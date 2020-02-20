@@ -1,43 +1,28 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import { actionCreators } from '../actions/actions'
 
 import { 
     Hand,
-    Image,
-    Button 
+    Image
 } from '../assets/styles'
 
-const Player = ({ deck, player, actions, winner }) => {
+const Player = ({ player }) => {
     if (!player.hand[0]) return <h1>Loading...</h1>
     return (
-        <div>
-            <Hand>
-                {
-                    player.hand.map((card, indx) => {
-                        return <Image
-                                key={indx}
-                                src={card.image} />
-                    })
-                }
-            </Hand>
-            <div>
-                <Button disabled={player.stand || winner} onClick={() => actions.hit(deck.deck_id, 'player')}>Hit</Button>
-                <Button disabled={player.stand || winner} onClick={() => actions.stand()}>Stand</Button>
-            </div>
-        </div>
+        <Hand>
+            {
+                player.hand.map((card, indx) => {
+                    return <Image
+                            key={indx}
+                            src={card.image} />
+                })
+            }
+        </Hand>
     )
 }
 
-const mapStateToProps = ({ deck, player, winner }) => {
-    return { deck, player, winner }
-}
-  
-const mapDispatchToProps = (dispatch) => {
-    return {
-      actions: bindActionCreators(actionCreators, dispatch)
-    }
+const mapStateToProps = ({ player }) => {
+    return { player }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Player);
+export default connect(mapStateToProps)(Player);
