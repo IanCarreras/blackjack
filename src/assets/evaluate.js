@@ -1,3 +1,5 @@
+import { statement } from "@babel/template";
+
 const cardValues = {
     '2': 2,
     '3': 3,
@@ -32,4 +34,15 @@ export const winner = (player, computer) => {
     if(computer <= 21 && computer > player) winner = 'Computer wins'
     if(player === computer) winner = 'Draw'
     return winner
+}
+
+export const hitSuccessState= (char, state, payload) => {
+    return {
+        ...state,
+        [char]: {
+            ...state[char],
+            score: handValue([...state[char].hand, payload.cards[0]]),
+            hand: [...state[char].hand, payload.cards[0]]
+        }
+    }
 }
