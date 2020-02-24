@@ -19,8 +19,13 @@ const Display = ({player, computer, winner, actions, deck, deckId}) => {
                 <Score>Player: {player.score}</Score>
             </ScoreContainer>
             <ButtonContainer>
-                {!winner && <Button disabled={player.stand || winner} onClick={() => actions.hit(deck.deck_id, 'player')}>Hit</Button>}
-                {!winner && <Button disabled={player.stand || winner} onClick={() => actions.stand()}>Stand</Button>}
+                {!winner &&
+                    <>
+                        <Button disabled={player.stand || winner} onClick={() => actions.hit(deck.deck_id, 'player')}>Hit</Button>
+                        <Button disabled={player.stand || winner} onClick={() => actions.stand()}>Stand</Button>
+                    </>
+                }
+                
                 {winner && <Button onClick={() => actions.dealHand(deckId)}>Next Hand</Button>}
             </ButtonContainer>
         </DisplayDiv>
