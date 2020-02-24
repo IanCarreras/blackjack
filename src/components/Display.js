@@ -5,7 +5,8 @@ import { actionCreators } from '../actions/actions'
 
 import { DisplayDiv, 
     ScoreContainer,
-    Score, 
+    Score,
+    ButtonContainer, 
     Button 
 } from '../assets/styles'
 
@@ -17,11 +18,11 @@ const Display = ({player, computer, winner, actions, deck, deckId}) => {
                 <Score>Computer: {computer.score}</Score>
                 <Score>Player: {player.score}</Score>
             </ScoreContainer>
-            <div>
-                <Button disabled={player.stand || winner} onClick={() => actions.hit(deck.deck_id, 'player')}>Hit</Button>
-                <Button disabled={player.stand || winner} onClick={() => actions.stand()}>Stand</Button>
+            <ButtonContainer>
+                {!winner && <Button disabled={player.stand || winner} onClick={() => actions.hit(deck.deck_id, 'player')}>Hit</Button>}
+                {!winner && <Button disabled={player.stand || winner} onClick={() => actions.stand()}>Stand</Button>}
                 {winner && <Button onClick={() => actions.dealHand(deckId)}>Next Hand</Button>}
-            </div>
+            </ButtonContainer>
         </DisplayDiv>
     )
 }
