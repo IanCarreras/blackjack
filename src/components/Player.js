@@ -1,24 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import Hand from './Hand'
 
 import { 
-    Hand,
+    HandDiv,
     Image
 } from '../assets/styles'
 
 const Player = ({ player }) => {
-    if (!player.hand[0]) return <h1>Loading...</h1>
-    return (
-        <Hand>
-            {
-                player.hand.map((card, indx) => {
-                    return <Image
-                            key={indx}
-                            src={card.image} />
-                })
-            }
-        </Hand>
-    )
+    return <Hand char={player} />
 }
 
 const mapStateToProps = ({ player }) => {

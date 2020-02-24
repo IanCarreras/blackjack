@@ -16,7 +16,7 @@ export const CardTable = styled.div`
     width: 60%;
     background: darkgreen;
 `
-export const Hand = styled.div`
+export const HandDiv = styled.div`
     width: 100%;
     margin: 1.5rem auto;
     text-align: center;
