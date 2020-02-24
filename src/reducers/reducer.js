@@ -1,4 +1,4 @@
-import { handValue, winner } from '../assets/evaluate'
+import { handValue, winner, hitSuccessState } from '../assets/evaluate'
 import { 
     FETCH_DECK_START,
     FETCH_DECK_SUCCESS,
@@ -85,14 +85,8 @@ const reducer = (state = initialState, action) => {
 
 
         case PLAYER_HIT_SUCCESS:
-            return {
-                ...state,
-                player: {
-                    ...state.player,
-                    score: handValue([...state.player.hand, payload.cards[0]]),
-                    hand: [...state.player.hand, payload.cards[0]]
-                }
-            }
+            return hitSuccessState('player', state, payload)
+            
         case PLAYER_HIT_ERROR:
             return {
                 ...state,
@@ -116,14 +110,8 @@ const reducer = (state = initialState, action) => {
                 error: payload
             }
         case COMPUTER_HIT_SUCCESS:
-            return {
-                ...state,
-                computer: {
-                    ...state.computer,
-                    score: handValue([...state.computer.hand, payload.cards[0]]),
-                    hand: [...state.computer.hand, payload.cards[0]]
-                }
-            }
+            return hitSuccessState('computer', state, payload)
+
         case END_GAME:
             return {
                 ...state,
