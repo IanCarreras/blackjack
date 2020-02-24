@@ -28,10 +28,8 @@ export const handValue = (hand) => {
 
 export const winner = (player, computer) => {
     let winner = ''
-    if(player > 21) winner = 'Computer wins'
-    if(computer > 21) winner = 'Player wins'
-    if(player <= 21 && player > computer) winner = 'Player wins'
-    if(computer <= 21 && computer > player) winner = 'Computer wins'
+    if(computer <= 21 && computer > player || player > 21) winner = 'Computer wins'
+    if(player <= 21 && player > computer || computer > 21) winner = 'Player wins'
     if(player === computer) winner = 'Draw'
     return winner
 }
