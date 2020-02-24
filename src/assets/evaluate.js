@@ -28,7 +28,6 @@ export const handValue = (hand) => {
 
 export const winner = (player, computer) => {
     let winner = ''
-    // if(player <= 21 && player > computer || computer > 21) winner = 'Player wins'
 
     if(computer <= 21 && computer > player || player > 21) {
         winner = 'Computer wins'
